@@ -1,0 +1,67 @@
+Algoritmo "semnome"
+// Disciplina   : [Linguagem e Lógica de Programação]
+// Professor   : Antonio Carlos Nicolodi
+// Descrição   : Aqui você descreve o que o programa faz! (função)
+// Autor(a)    : Nome do(a) aluno(a)
+// Data atual  : 16/11/2024
+Var
+    tipoJuros: caractere
+    valorInicial, valorMensal, taxa: real
+    meses, i: inteiro
+    juros, totalAcumulado: vetor[0..12] de real
+    
+Procedimento jurosSimples(valorInicial, taxa: real; meses: inteiro): real
+Inicio
+      para i de 0 ate meses faca
+           juros[i] <- valorInicial * (taxa / 100) * i
+           totalAcumulado[i] <- valorInicial + juros[i]
+      fimpara
+FimProcedimento
+
+Procedimento jurosCompostos(valorInicial, valorMensal, taxa: real; meses: inteiro): real
+Var
+   acumulado: real
+Inicio
+      acumulado <- valorInicial
+      para i de 1 ate meses faca
+           juros[i] <- acumulado * (taxa / 100)
+           acumulado <- acumulado + juros[i] + valorMensal
+           totalAcumulado[i] <- acumulado
+      fimpara
+FimProcedimento
+
+Inicio
+      escreval("Digite 'S' para Juros Simples ou 'C' para Juros Compostos: ")
+      leia(tipoJuros)
+      escreval("Digite o valor inicial: ")
+      leia(valorInicial)
+      se tipoJuros = "C" entao
+         escreval("Digite o valor mensal: ")
+         leia(valorMensal)
+      senao
+           valorMensal <- 0
+      fimse
+      escreval("Digite a taxa de juros (em %): ")
+      leia(taxa)
+      escreval("Digite o período (em meses, entre 6 e 12): ")
+      leia(meses)
+      se (meses < 6) ou (meses > 12) entao
+         escreval("NÚMERO DE PARCELAS INVÁLIDO.")
+         retorne
+      fimse
+      se (valorInicial < 100) entao
+         escreval("VALOR MÍNIMO PARA PARCELAMENTO DEVE SER R$1000,00.")
+      fimse
+      se (taxa <= 0) ou (taxa > 10) entao
+         escreval("VALOR DO JUROS NÃO PODE SUPERAR 10%.")
+      fimse
+      se tipoJuros = "S" entao
+         jurosSimples(valorInicial, taxa, meses)
+      senao
+           jurosCompostos(valorInicial, valorMensal, taxa,meses)
+      fimse
+
+      para i de 0 ate meses faca
+           escreval("Mês: ", i, " Juros: ", juros[i]:2, " Total Acumulado: ", totalAcumulado[i]:2)
+      fimpara
+Fimalgoritmo

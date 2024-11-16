@@ -1,0 +1,105 @@
+Algoritmo "semnome"
+// Disciplina   : [Linguagem e Lógica de Programação]
+// Professor   : Antonio Carlos Nicolodi
+// Descrição   : Aqui você descreve o que o programa faz! (função)
+// Autor(a)    : Nome do(a) aluno(a)
+// Data atual  : 16/11/2024
+Var
+    num1, num2, i, idade: inteiro
+    resultado: real
+    numeros: vetor[1..100] de real
+    opcao: caractere
+
+Procedimento potencia(base, expoente: inteiro)
+Var
+    i: inteiro
+    resultado: real
+Inicio
+    resultado <- 1
+    para i de 1 ate expoente faca
+        resultado <- resultado * base
+    fimpara
+    escreval("Resultado: ", resultado)
+FimProcedimento
+
+Procedimento somaInclusiva(num1, num2: inteiro)
+Var
+    soma, i: inteiro
+Inicio
+    se num1 > num2 entao
+        temp <- num1
+        num1 <- num2
+        num2 <- temp
+    fimse
+    soma <- 0
+    para i de num1 ate num2 faca
+        soma <- soma + i
+    fimpara
+    escreval("Soma inclusiva: ", soma)
+FimProcedimento
+
+Procedimento produtoExclusivo(num1, num2: inteiro)
+Var
+    produto, i: inteiro
+Inicio
+    se num1 > num2 entao
+        temp <- num1
+        num1 <- num2
+        num2 <- temp
+    fimse
+    produto <- 1
+    para i de num1 + 1 ate num2 - 1 faca
+        produto <- produto * i
+    fimpara
+    escreval("Produto exclusivo: ", produto)
+FimProcedimento
+
+Procedimento carregarVetor(idade, primeiro, salto: inteiro)
+Var
+    i: inteiro
+Inicio
+    para i de 1 ate idade faca
+        numeros[i] <- primeiro + (i - 1) * salto
+    fimpara
+    escreval("Vetor carregado com sucesso.")
+    para i de 1 ate idade faca
+        escreva(numeros[i], " ")
+    fimpara
+    escreval("")
+FimProcedimento
+
+Inicio
+    escreval("Digite o primeiro n mero inteiro:")
+    leia(num1)
+    escreval("Digite o segundo n mero inteiro:")
+    leia(num2)
+
+    repita
+        escreval("Menu:")
+        escreval("A) O valor do primeiro n mero elevado   pot ncia do segundo n mero")
+        escreval("B) A soma dos n meros entre os dois digitados, incluindo-os")
+        escreval("C) O produto entre os dois n meros, n o incluindo-os")
+        escreval("D) Carregar um vetor conforme a sua idade")
+        escreval("E) Sair")
+
+        escreval("Escolha uma op  o (A, B, C, D, E):")
+        leia(opcao)
+
+        escolha opcao
+            caso "A"
+                potencia(num1, num2)
+            caso "B"
+                somaInclusiva(num1, num2)
+            caso "C"
+                produtoExclusivo(num1, num2)
+            caso "D"
+                idade <- 19
+                carregarVetor(idade, num1, num2)
+            caso "E"
+                escreval("Saindo...")
+            outrocaso
+                escreval("Op  o inv lida! Tente novamente.")
+        fimescolha
+    ate opcao = "E"
+Fimalgoritmo
+
