@@ -9,23 +9,24 @@ Var
     resultado: real
     numeros: vetor[1..100] de real
     opcao: caractere
+    potenciaResultado, somaInclusivaResultado, produtoExclusivoResultado: real
 
-Procedimento potencia(base, expoente: inteiro)
-Var
+funcao Potencia(base: inteiro; expoente: inteiro): real
+var
     i: inteiro
     resultado: real
-Inicio
+inicio
     resultado <- 1
     para i de 1 ate expoente faca
         resultado <- resultado * base
     fimpara
-    escreval("Resultado: ", resultado)
-FimProcedimento
+    retorne resultado
+fimfuncao
 
-Procedimento somaInclusiva(num1, num2: inteiro)
-Var
+funcao SomaInclusiva(num1: inteiro; num2: inteiro): inteiro
+var
     soma, i: inteiro
-Inicio
+inicio
     se num1 > num2 entao
         temp <- num1
         num1 <- num2
@@ -35,13 +36,13 @@ Inicio
     para i de num1 ate num2 faca
         soma <- soma + i
     fimpara
-    escreval("Soma inclusiva: ", soma)
-FimProcedimento
+    retorne soma
+fimfuncao
 
-Procedimento produtoExclusivo(num1, num2: inteiro)
-Var
+funcao ProdutoExclusivo(num1: inteiro; num2: inteiro): inteiro
+var
     produto, i: inteiro
-Inicio
+inicio
     se num1 > num2 entao
         temp <- num1
         num1 <- num2
@@ -51,8 +52,8 @@ Inicio
     para i de num1 + 1 ate num2 - 1 faca
         produto <- produto * i
     fimpara
-    escreval("Produto exclusivo: ", produto)
-FimProcedimento
+    retorne produto
+fimfuncao
 
 Procedimento carregarVetor(idade, primeiro, salto: inteiro)
 Var
@@ -69,37 +70,39 @@ Inicio
 FimProcedimento
 
 Inicio
-    escreval("Digite o primeiro n mero inteiro:")
+    escreval("Digite o primeiro número inteiro:")
     leia(num1)
-    escreval("Digite o segundo n mero inteiro:")
+    escreval("Digite o segundo número inteiro:")
     leia(num2)
 
     repita
         escreval("Menu:")
-        escreval("A) O valor do primeiro n mero elevado   pot ncia do segundo n mero")
-        escreval("B) A soma dos n meros entre os dois digitados, incluindo-os")
-        escreval("C) O produto entre os dois n meros, n o incluindo-os")
+        escreval("A) O valor do primeiro número elevado à potência do segundo número")
+        escreval("B) A soma dos números entre os dois digitados, incluindo-os")
+        escreval("C) O produto entre os dois números, não incluindo-os")
         escreval("D) Carregar um vetor conforme a sua idade")
         escreval("E) Sair")
 
-        escreval("Escolha uma op  o (A, B, C, D, E):")
+        escreval("Escolha uma opção (A, B, C, D, E):")
         leia(opcao)
 
         escolha opcao
             caso "A"
-                potencia(num1, num2)
+                potenciaResultado <- Potencia(num1, num2)
+                escreval(potenciaResultado)
             caso "B"
-                somaInclusiva(num1, num2)
+                somaInclusivaResultado <- SomaInclusiva(num1, num2)
+                escreval(somaInclusivaResultado)
             caso "C"
-                produtoExclusivo(num1, num2)
+                produtoExclusivoResultado <- ProdutoExclusivo(num1, num2)
+                escreval(produtoExclusivoResultado)
             caso "D"
                 idade <- 19
                 carregarVetor(idade, num1, num2)
             caso "E"
                 escreval("Saindo...")
             outrocaso
-                escreval("Op  o inv lida! Tente novamente.")
+                escreval("Opção inválida! Tente novamente.")
         fimescolha
     ate opcao = "E"
 Fimalgoritmo
-
