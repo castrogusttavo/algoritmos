@@ -64,36 +64,36 @@ FimProcedimento
 
 Procedimento gerarNumerosPares(dia, tamanho: inteiro)
 Var
-    inicio, contador: inteiro
+    comeco, contador: inteiro
 Inicio
     se (dia % 2 = 0) entao
-        inicio <- dia
+        comeco <- dia
     senao
-        inicio <- dia - 1
+        comeco <- dia - 1
     fimse
 
     contador <- 1
     enquanto (contador <= tamanho) faca
-        sequencia[contador] <- inicio
-        inicio <- inicio + 2
+        sequencia[contador] <- comeco
+        comeco <- comeco + 2
         contador <- contador + 1
     fimenquanto
 FimProcedimento
 
 Procedimento gerarNumerosImpares(mes, tamanho: inteiro)
 Var
-    inicio, contador: inteiro
+    comeco, contador: inteiro
 Inicio
     se (mes % 2 = 1) entao
-        inicio <- mes
+        comeco <- mes
     senao
-        inicio <- mes + 1
+        comeco <- mes + 1
     fimse
 
     contador <- 1
     enquanto (contador <= tamanho) faca
-        sequencia[contador] <- inicio
-        inicio <- inicio + 2
+        sequencia[contador] <- comeco
+        comeco <- comeco + 2
         contador <- contador + 1
     fimenquanto
 FimProcedimento
