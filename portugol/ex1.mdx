@@ -1,138 +1,142 @@
-Algoritmo "semnome"
+Algoritmo "sequencias_numericas"
 // Disciplina   : [Linguagem e Lógica de Programação]
 // Professor   : Antonio Carlos Nicolodi
-// Descrição   : Aqui você descreve o que o programa faz! (função)
+// Descrição   : Geração de diversas sequências numéricas
 // Autor(a)    : Nome do(a) aluno(a)
 // Data atual  : 16/11/2024
 Var
-    length, i, idade: inteiro
-    sequence: vetor[1..100] de inteiro
+    tamanho, i, idade: inteiro
+    sequencia: vetor[1..100] de inteiro
 
-Procedimento fibonacciSequence(length: inteiro)
+Procedimento gerarSequenciaFibonacci(tamanho: inteiro)
 Var
     i: inteiro
 Inicio
-    sequence[1] <- 0
-    sequence[2] <- 1
-    para i de 3 ate length faca
-        sequence[i] <- sequence[i-1] + sequence[i-2]
+    sequencia[1] <- 0
+    sequencia[2] <- 1
+    para i de 3 ate tamanho faca
+        sequencia[i] <- sequencia[i-1] + sequencia[i-2]
     fimpara
 FimProcedimento
 
-Procedimento fettuccineSequence(month, day, length: inteiro)
+Procedimento gerarSequenciaFettuccine(mes, dia, tamanho: inteiro)
 Var
     i: inteiro
 Inicio
-    sequence[1] <- month
-    sequence[2] <- day
-    para i de 3 ate length faca
+    sequencia[1] <- mes
+    sequencia[2] <- dia
+    para i de 3 ate tamanho faca
         se (i % 2 = 0) entao
-            sequence[i] <- sequence[i-2] - sequence[i-1]
+            sequencia[i] <- sequencia[i-2] - sequencia[i-1]
         senao
-            sequence[i] <- sequence[i-2] + sequence[i-1]
+            sequencia[i] <- sequencia[i-2] + sequencia[i-1]
         fimse
     fimpara
 FimProcedimento
 
-Procedimento primeNumbersFromAge(age, length: inteiro)
+Procedimento gerarNumerosPrimos(idade, tamanho: inteiro)
 Var
-    num, count, i: inteiro
-    ePrimo: logico
+    numero, contador, i: inteiro
+    ehPrimo: logico
 Inicio
-    se (age > 1) entao
-        num <- age
+    se (idade > 1) entao
+        numero <- idade
     senao
-        num <- 2
+        numero <- 2
     fimse
 
-    count <- 1
+    contador <- 1
 
-    enquanto (count <= length) faca
-        ePrimo <- verdadeiro
-        para i de 2 ate (num - 1) faca
-            se (num % i = 0) entao
-                ePrimo <- falso
+    enquanto (contador <= tamanho) faca
+        ehPrimo <- verdadeiro
+        para i de 2 ate (numero - 1) faca
+            se (numero % i = 0) entao
+                ehPrimo <- falso
             fimse
         fimpara
-        se (ePrimo) entao
-            sequence[count] <- num
-            count <- count + 1
+        se (ehPrimo) entao
+            sequencia[contador] <- numero
+            contador <- contador + 1
         fimse
-        num <- num + 1
+        numero <- numero + 1
     fimenquanto
 FimProcedimento
 
-Procedimento evenNumbersFromDay(day, length: inteiro)
+Procedimento gerarNumerosPares(dia, tamanho: inteiro)
 Var
-    start, count: inteiro
+    inicio, contador: inteiro
 Inicio
-    se (day % 2 = 0) entao
-        start <- day
+    se (dia % 2 = 0) entao
+        inicio <- dia
     senao
-        start <- day - 1
+        inicio <- dia - 1
     fimse
 
-    count <- 1
-    enquanto (count <= length) faca
-        sequence[count] <- start
-        start <- start + 2
-        count <- count + 1
+    contador <- 1
+    enquanto (contador <= tamanho) faca
+        sequencia[contador] <- inicio
+        inicio <- inicio + 2
+        contador <- contador + 1
     fimenquanto
 FimProcedimento
 
-Procedimento oddNumbersFromMonth(month, length: inteiro)
+Procedimento gerarNumerosImpares(mes, tamanho: inteiro)
 Var
-    start, count: inteiro
+    inicio, contador: inteiro
 Inicio
-    se (month % 2 = 1) entao
-        start <- month
+    se (mes % 2 = 1) entao
+        inicio <- mes
     senao
-        start <- month + 1
+        inicio <- mes + 1
     fimse
 
-    count <- 1
-    enquanto (count <= length) faca
-        sequence[count] <- start
-        start <- start + 2
-        count <- count + 1
+    contador <- 1
+    enquanto (contador <= tamanho) faca
+        sequencia[contador] <- inicio
+        inicio <- inicio + 2
+        contador <- contador + 1
     fimenquanto
 FimProcedimento
 
-Procedimento mainEx1()
+Procedimento principal()
 Inicio
     idade <- 19
-    escreval("Fibonacci:")
-    fibonacciSequence(idade)
+    escreval("Sequência Fibonacci:")
+    gerarSequenciaFibonacci(idade)
     para i de 1 ate idade faca
-        escreva(sequence[i], " ")
+        escreva(sequencia[i], " ")
     fimpara
     escreval("")
-    escreval("Fettuccine:")
-    fettuccineSequence(9, 28, idade)
+    
+    escreval("Sequência Fettuccine:")
+    gerarSequenciaFettuccine(9, 28, idade)
     para i de 1 ate idade faca
-        escreva(sequence[i], " ")
+        escreva(sequencia[i], " ")
     fimpara
     escreval("")
-    escreval("Primos:")
-    primeNumbersFromAge(idade, idade)
+    
+    escreval("Números Primos:")
+    gerarNumerosPrimos(idade, idade)
     para i de 1 ate idade faca
-        escreva(sequence[i], " ")
+        escreva(sequencia[i], " ")
     fimpara
     escreval("")
-    escreval("Pares:")
-    evenNumbersFromDay(28, idade)
+    
+    escreval("Números Pares:")
+    gerarNumerosPares(28, idade)
     para i de 1 ate idade faca
-        escreva(sequence[i], " ")
+        escreva(sequencia[i], " ")
     fimpara
     escreval("")
-    escreval(" mpares:")
-    oddNumbersFromMonth(9, idade)
+    
+    escreval("Números Ímpares:")
+    gerarNumerosImpares(9, idade)
     para i de 1 ate idade faca
-        escreva(sequence[i], " ")
+        escreva(sequencia[i], " ")
     fimpara
     escreval("")
 FimProcedimento
 
 Inicio
-    mainEx1()
+    principal()
 Fimalgoritmo

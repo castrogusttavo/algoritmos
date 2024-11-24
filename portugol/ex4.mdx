@@ -1,15 +1,15 @@
-Algoritmo "semnome"
+Algoritmo "menu_opcoes"
 // Disciplina   : [Linguagem e Lógica de Programação]
 // Professor   : Antonio Carlos Nicolodi
-// Descrição   : Aqui você descreve o que o programa faz! (função)
+// Descrição   : Executa operações matemáticas e manipulação de vetor baseadas em um menu interativo
 // Autor(a)    : Nome do(a) aluno(a)
 // Data atual  : 16/11/2024
 Var
-    num1, num2, i, idade: inteiro
+    numero1, numero2, i, idade: inteiro
     resultado: real
     numeros: vetor[1..100] de real
     opcao: caractere
-    potenciaResultado, somaInclusivaResultado, produtoExclusivoResultado: real
+    resultadoPotencia, resultadoSomaInclusiva, resultadoProdutoExclusivo: real
 
 funcao Potencia(base: inteiro; expoente: inteiro): real
 var
@@ -23,33 +23,33 @@ inicio
     retorne resultado
 fimfuncao
 
-funcao SomaInclusiva(num1: inteiro; num2: inteiro): inteiro
+funcao SomaInclusiva(numero1: inteiro; numero2: inteiro): inteiro
 var
-    soma, i: inteiro
+    soma, i, temp: inteiro
 inicio
-    se num1 > num2 entao
-        temp <- num1
-        num1 <- num2
-        num2 <- temp
+    se numero1 > numero2 entao
+        temp <- numero1
+        numero1 <- numero2
+        numero2 <- temp
     fimse
     soma <- 0
-    para i de num1 ate num2 faca
+    para i de numero1 ate numero2 faca
         soma <- soma + i
     fimpara
     retorne soma
 fimfuncao
 
-funcao ProdutoExclusivo(num1: inteiro; num2: inteiro): inteiro
+funcao ProdutoExclusivo(numero1: inteiro; numero2: inteiro): inteiro
 var
-    produto, i: inteiro
+    produto, i, temp: inteiro
 inicio
-    se num1 > num2 entao
-        temp <- num1
-        num1 <- num2
-        num2 <- temp
+    se numero1 > numero2 entao
+        temp <- numero1
+        numero1 <- numero2
+        numero2 <- temp
     fimse
     produto <- 1
-    para i de num1 + 1 ate num2 - 1 faca
+    para i de numero1 + 1 ate numero2 - 1 faca
         produto <- produto * i
     fimpara
     retorne produto
@@ -71,12 +71,12 @@ FimProcedimento
 
 Inicio
     escreval("Digite o primeiro número inteiro:")
-    leia(num1)
+    leia(numero1)
     escreval("Digite o segundo número inteiro:")
-    leia(num2)
+    leia(numero2)
 
     repita
-        escreval("Menu:")
+        escreval("Menu de opções:")
         escreval("A) O valor do primeiro número elevado à potência do segundo número")
         escreval("B) A soma dos números entre os dois digitados, incluindo-os")
         escreval("C) O produto entre os dois números, não incluindo-os")
@@ -88,19 +88,19 @@ Inicio
 
         escolha opcao
             caso "A"
-                potenciaResultado <- Potencia(num1, num2)
-                escreval(potenciaResultado)
+                resultadoPotencia <- Potencia(numero1, numero2)
+                escreval("Resultado da potência: ", resultadoPotencia)
             caso "B"
-                somaInclusivaResultado <- SomaInclusiva(num1, num2)
-                escreval(somaInclusivaResultado)
+                resultadoSomaInclusiva <- SomaInclusiva(numero1, numero2)
+                escreval("Soma inclusiva: ", resultadoSomaInclusiva)
             caso "C"
-                produtoExclusivoResultado <- ProdutoExclusivo(num1, num2)
-                escreval(produtoExclusivoResultado)
+                resultadoProdutoExclusivo <- ProdutoExclusivo(numero1, numero2)
+                escreval("Produto exclusivo: ", resultadoProdutoExclusivo)
             caso "D"
-                idade <- 19
-                carregarVetor(idade, num1, num2)
+                idade <- 19 // Substitua pela sua idade, se necessário
+                carregarVetor(idade, numero1, numero2)
             caso "E"
-                escreval("Saindo...")
+                escreval("Encerrando o programa...")
             outrocaso
                 escreval("Opção inválida! Tente novamente.")
         fimescolha

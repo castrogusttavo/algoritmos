@@ -1,55 +1,55 @@
-Algoritmo "semnome"
+Algoritmo "manipulacao_matriz"
 // Disciplina   : [Linguagem e Lógica de Programação]
 // Professor   : Antonio Carlos Nicolodi
-// Descrição   : Aqui você descreve o que o programa faz! (função)
+// Descrição   : Manipula uma matriz 3x3 com opções interativas para alterar, dobrar ou filtrar seus valores
 // Autor(a)    : Nome do(a) aluno(a)
 // Data atual  : 16/11/2024
 Var
-    matrix: vetor[1..3, 1..3] de inteiro
-    opcoes: caractere
-    posicoes, idade, n, i, j, temp: inteiro
+    matriz: vetor[1..3, 1..3] de inteiro
+    opcao: caractere
+    posicoes, idade, n, i, j: inteiro
 
-Procedimento shiftMatrix(posicoes: inteiro)
+Procedimento deslocarMatriz(posicoes: inteiro)
 Var
-    flattened, shifted: vetor[1..9] de inteiro
+    achatar, deslocada: vetor[1..9] de inteiro
 Inicio
     // Achatar a matriz em um vetor
     para i de 1 ate 3 faca
         para j de 1 ate 3 faca
-            flattened[(i-1)*3+j] <- matrix[i,j]
+            achatar[(i-1)*3+j] <- matriz[i,j]
         fimpara
     fimpara
 
     // Deslocar os elementos
     para i de 1 ate 9 faca
-        shifted[(i+posicoes-1) mod 9 + 1] <- flattened[i]
+        deslocada[(i+posicoes-1) mod 9 + 1] <- achatar[i]
     fimpara
 
     // Reconstituir a matriz
     para i de 1 ate 3 faca
         para j de 1 ate 3 faca
-            matrix[i,j] <- shifted[(i-1)*3+j]
+            matriz[i,j] <- deslocada[(i-1)*3+j]
         fimpara
     fimpara
 FimProcedimento
 
-Procedimento doubleMatrix()
+Procedimento dobrarMatriz()
 Inicio
     para i de 1 ate 3 faca
         para j de 1 ate 3 faca
-            matrix[i,j] <- matrix[i,j] * 2
+            matriz[i,j] <- matriz[i,j] * 2
         fimpara
     fimpara
 FimProcedimento
 
-Procedimento filterMatrix(idade: inteiro)
+Procedimento filtrarMatriz(idade: inteiro)
 Inicio
     para i de 1 ate 3 faca
         para j de 1 ate 3 faca
-            se matrix[i,j] >= idade entao
-                matrix[i,j] <- matrix[i,j]
+            se matriz[i,j] >= idade entao
+                matriz[i,j] <- matriz[i,j]
             senao
-                matrix[i,j] <- 0
+                matriz[i,j] <- 0
             fimse
         fimpara
     fimpara
@@ -59,51 +59,52 @@ Inicio
     // Ler os valores da matriz
     para i de 1 ate 3 faca
         para j de 1 ate 3 faca
-            escreva("Digite o valor para matriz[", i-1, "][", j-1, "]: ")
-            leia(matrix[i,j])
+            escreva("Digite o valor para matriz[", i, "][", j, "]: ")
+            leia(matriz[i,j])
         fimpara
     fimpara
 
     // Menu Interativo
-    escreval("Escolha uma op  o:")
-    escreval("a. Mudar a posi  o dos elementos em duas posi  es   frente")
-    escreval("b. Mudar a posi  o dos elementos em n posi  es   frente")
+    escreval("Escolha uma opção:")
+    escreval("a. Mover os elementos 2 posições à frente")
+    escreval("b. Mover os elementos n posições à frente")
     escreval("c. Popular nova matriz com valores dobrados")
     escreval("d. Popular nova matriz com valores >= idade ou zerar")
 
-    escreva("Digite a op  o desejada (a, b, c, d): ")
-    leia(opcoes)
+    escreva("Digite a opção desejada (a, b, c, d): ")
+    leia(opcao)
 
-    idade <- 19  // Substitua pela sua idade
+    idade <- 19  // Substitua pela sua idade, se necessário
 
-    se opcoes = "a" entao
-        shiftMatrix(2)
+    se opcao = "a" entao
+        deslocarMatriz(2)
     senao
-        se opcoes = "b" entao
-            escreva("Digite o n mero de posi  es (1 a 8): ")
+        se opcao = "b" entao
+            escreva("Digite o número de posições (1 a 8): ")
             leia(n)
             se (n < 1) ou (n > 8) entao
-                escreval("Valor inv lido!")
+                escreval("Valor inválido!")
             senao
-                shiftMatrix(n)
+                deslocarMatriz(n)
             fimse
         senao
-            se opcoes = "c" entao
-                doubleMatrix()
+            se opcao = "c" entao
+                dobrarMatriz()
             senao
-                se opcoes = "d" entao
-                    filterMatrix(idade)
+                se opcao = "d" entao
+                    filtrarMatriz(idade)
                 senao
-                    escreval("Op  o inv lida!")
+                    escreval("Opção inválida!")
                 fimse
             fimse
         fimse
     fimse
 
     // Exibir a matriz resultante
+    escreval("Matriz resultante:")
     para i de 1 ate 3 faca
         para j de 1 ate 3 faca
-            escreva(matrix[i,j], " ")
+            escreva(matriz[i,j], " ")
         fimpara
         escreval("")
     fimpara
