@@ -5,138 +5,153 @@ Algoritmo "sequencias_numericas"
 // Autor(a)    : Nome do(a) aluno(a)
 // Data atual  : 16/11/2024
 Var
-    tamanho, i, idade: inteiro
-    sequencia: vetor[1..100] de inteiro
+    length, i, idade: inteiro
+    sequence: vetor[1..100] de inteiro
+    opcoes: caractere
 
-Procedimento gerarSequenciaFibonacci(tamanho: inteiro)
+Procedimento fibonacciSequence(length: inteiro)
 Var
     i: inteiro
 Inicio
-    sequencia[1] <- 0
-    sequencia[2] <- 1
-    para i de 3 ate tamanho faca
-        sequencia[i] <- sequencia[i-1] + sequencia[i-2]
+    sequence[1] <- 0
+    sequence[2] <- 1
+    para i de 3 ate length faca
+        sequence[i] <- sequence[i-1] + sequence[i-2]
     fimpara
 FimProcedimento
 
-Procedimento gerarSequenciaFettuccine(mes, dia, tamanho: inteiro)
+Procedimento fettuccineSequence(month, day, length: inteiro)
 Var
     i: inteiro
 Inicio
-    sequencia[1] <- mes
-    sequencia[2] <- dia
-    para i de 3 ate tamanho faca
+    sequence[1] <- month
+    sequence[2] <- day
+    para i de 3 ate length faca
         se (i % 2 = 0) entao
-            sequencia[i] <- sequencia[i-2] - sequencia[i-1]
+            sequence[i] <- sequence[i-2] - sequence[i-1]
         senao
-            sequencia[i] <- sequencia[i-2] + sequencia[i-1]
+            sequence[i] <- sequence[i-2] + sequence[i-1]
         fimse
     fimpara
 FimProcedimento
 
-Procedimento gerarNumerosPrimos(idade, tamanho: inteiro)
+Procedimento primeNumbersFromAge(age, length: inteiro)
 Var
-    numero, contador, i: inteiro
-    ehPrimo: logico
+    num, count, i: inteiro
+    ePrimo: logico
 Inicio
-    se (idade > 1) entao
-        numero <- idade
+    se (age > 1) entao
+        num <- age
     senao
-        numero <- 2
+        num <- 2
     fimse
 
-    contador <- 1
+    count <- 1
 
-    enquanto (contador <= tamanho) faca
-        ehPrimo <- verdadeiro
-        para i de 2 ate (numero - 1) faca
-            se (numero % i = 0) entao
-                ehPrimo <- falso
+    enquanto (count <= length) faca
+        ePrimo <- verdadeiro
+        para i de 2 ate (num - 1) faca
+            se (num % i = 0) entao
+                ePrimo <- falso
             fimse
         fimpara
-        se (ehPrimo) entao
-            sequencia[contador] <- numero
-            contador <- contador + 1
+        se (ePrimo) entao
+            sequence[count] <- num
+            count <- count + 1
         fimse
-        numero <- numero + 1
+        num <- num + 1
     fimenquanto
 FimProcedimento
 
-Procedimento gerarNumerosPares(dia, tamanho: inteiro)
+Procedimento evenNumbersFromDay(day, length: inteiro)
 Var
-    comeco, contador: inteiro
+    start, count: inteiro
 Inicio
-    se (dia % 2 = 0) entao
-        comeco <- dia
+    se (day % 2 = 0) entao
+        start <- day
     senao
-        comeco <- dia - 1
+        start <- day - 1
     fimse
 
-    contador <- 1
-    enquanto (contador <= tamanho) faca
-        sequencia[contador] <- comeco
-        comeco <- comeco + 2
-        contador <- contador + 1
+    count <- 1
+    enquanto (count <= length) faca
+        sequence[count] <- start
+        start <- start + 2
+        count <- count + 1
     fimenquanto
 FimProcedimento
 
-Procedimento gerarNumerosImpares(mes, tamanho: inteiro)
+Procedimento oddNumbersFromMonth(month, length: inteiro)
 Var
-    comeco, contador: inteiro
+    start, count: inteiro
 Inicio
-    se (mes % 2 = 1) entao
-        comeco <- mes
+    se (month % 2 = 1) entao
+        start <- month
     senao
-        comeco <- mes + 1
+        start <- month + 1
     fimse
 
-    contador <- 1
-    enquanto (contador <= tamanho) faca
-        sequencia[contador] <- comeco
-        comeco <- comeco + 2
-        contador <- contador + 1
+    count <- 1
+    enquanto (count <= length) faca
+        sequence[count] <- start
+        start <- start + 2
+        count <- count + 1
     fimenquanto
 FimProcedimento
 
-Procedimento principal()
+Procedimento mainEx1()
 Inicio
+
+      escreval("Escolha uma opção:")
+    escreval("FB. Fibonnaci")
+    escreval("FT. Fettucine")
+    escreval("PR. Prime Numbers")
+    escreval("EN. Even Numbers")
+    escreval("ON. Odd Numbers")
+
+    escreva("Digite a opção desejada (FB, FT, PR, EN, ON): ")
+    leia(opcoes)
+    
     idade <- 19
-    escreval("Sequência Fibonacci:")
-    gerarSequenciaFibonacci(idade)
-    para i de 1 ate idade faca
-        escreva(sequencia[i], " ")
-    fimpara
-    escreval("")
     
-    escreval("Sequência Fettuccine:")
-    gerarSequenciaFettuccine(9, 28, idade)
-    para i de 1 ate idade faca
-        escreva(sequencia[i], " ")
-    fimpara
-    escreval("")
-    
-    escreval("Números Primos:")
-    gerarNumerosPrimos(idade, idade)
-    para i de 1 ate idade faca
-        escreva(sequencia[i], " ")
-    fimpara
-    escreval("")
-    
-    escreval("Números Pares:")
-    gerarNumerosPares(28, idade)
-    para i de 1 ate idade faca
-        escreva(sequencia[i], " ")
-    fimpara
-    escreval("")
-    
-    escreval("Números Ímpares:")
-    gerarNumerosImpares(9, idade)
-    para i de 1 ate idade faca
-        escreva(sequencia[i], " ")
-    fimpara
-    escreval("")
+    se opcoes = "FB" entao
+           escreval("Fibonacci:")
+          fibonacciSequence(idade)
+          para i de 1 ate idade faca
+              escreva(sequence[i], " ")
+          fimpara
+    fimse
+    se opcoes = "FT" entao
+          escreval("Fettuccine:")
+          fettuccineSequence(9, 28, idade)
+          para i de 1 ate idade faca
+              escreva(sequence[i], " ")
+          fimpara
+       fimse
+    se opcoes = "PR" entao
+       escreval("Primos:")
+       primeNumbersFromAge(idade, idade)
+       para i de 1 ate idade faca
+           escreva(sequence[i], " ")
+       fimpara
+    fimse
+    se opcoes = "EN" entao
+       escreval("Pares:")
+       evenNumbersFromDay(28, idade)
+       para i de 1 ate idade faca
+           escreva(sequence[i], " ")
+       fimpara
+    fimse
+    se opcoes = "ON" entao
+       escreval("Ímpares:")
+       oddNumbersFromMonth(9, idade)
+       para i de 1 ate idade faca
+           escreva(sequence[i], " ")
+       fimpara
+       escreval("")
+    fimse
 FimProcedimento
 
 Inicio
-    principal()
+    mainEx1()
 Fimalgoritmo
