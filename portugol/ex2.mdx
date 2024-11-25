@@ -1,77 +1,73 @@
-Algoritmo "calculo_juros"
+Algoritmo "semnome"
 // Disciplina   : [Linguagem e Lógica de Programação]
 // Professor   : Antonio Carlos Nicolodi
-// Descrição   : Calcula juros simples e compostos baseados nos dados fornecidos pelo usuário
+// Descrição   : Aqui você descreve o que o programa faz! (função)
 // Autor(a)    : Nome do(a) aluno(a)
 // Data atual  : 16/11/2024
 Var
-    tipoDeJuros: caractere
+    tipoJuros: caractere
     valorInicial, valorMensal, taxa: real
     meses, i: inteiro
-    valoresJuros, totalAcumulado: vetor[0..12] de real
-    
-Procedimento calcularJurosSimples(valorInicial, taxa: real; meses: inteiro)
+    juros, totalAcumulado: vetor[0..12] de real
+
+Procedimento jurosSimples(valorInicial, taxa: real; meses: inteiro): real
 Inicio
-    para i de 0 ate meses faca
-        valoresJuros[i] <- valorInicial * (taxa / 100) * i
-        totalAcumulado[i] <- valorInicial + valoresJuros[i]
-    fimpara
+      para i de 0 ate meses faca
+           juros[i] <- valorInicial * (taxa / 100) * i
+           totalAcumulado[i] <- valorInicial + juros[i]
+      fimpara
 FimProcedimento
 
-Procedimento calcularJurosCompostos(valorInicial, valorMensal, taxa: real; meses: inteiro)
+Procedimento jurosCompostos(valorInicial, valorMensal, taxa: real; meses: inteiro): real
 Var
-    acumulado: real
+   acumulado: real
 Inicio
-    acumulado <- valorInicial
-    para i de 1 ate meses faca
-        valoresJuros[i] <- acumulado * (taxa / 100)
-        acumulado <- acumulado + valoresJuros[i] + valorMensal
-        totalAcumulado[i] <- acumulado
-    fimpara
+      acumulado <- valorInicial
+      para i de 1 ate meses faca
+           juros[i] <- acumulado * (taxa / 100)
+           acumulado <- acumulado + juros[i] + valorMensal
+           totalAcumulado[i] <- acumulado
+      fimpara
 FimProcedimento
 
 Inicio
-    escreval("Digite 'S' para Juros Simples ou 'C' para Juros Compostos: ")
-    leia(tipoDeJuros)
-    
-    escreval("Digite o valor inicial: ")
-    leia(valorInicial)
-    
-    se tipoDeJuros = "C" entao
-        escreval("Digite o valor mensal: ")
-        leia(valorMensal)
-    senao
-        valorMensal <- 0
-    fimse
-    
-    escreval("Digite a taxa de juros (em %): ")
-    leia(taxa)
-    
-    escreval("Digite o período (em meses, entre 6 e 12): ")
-    leia(meses)
-    
-    se (meses < 6) ou (meses > 12) entao
-        escreval("NÚMERO DE PARCELAS INVÁLIDO.")
-        retorne
-    fimse
-    
-    se (valorInicial < 1000) entao
-        escreval("VALOR MÍNIMO PARA PARCELAMENTO DEVE SER R$1000,00.")
-        retorne
-    fimse
-    
-    se (taxa <= 0) ou (taxa > 10) entao
-        escreval("VALOR DO JUROS NÃO PODE SUPERAR 10%.")
-        retorne
-    fimse
-    
-    se tipoDeJuros = "S" entao
-        calcularJurosSimples(valorInicial, taxa, meses)
-    senao
-        calcularJurosCompostos(valorInicial, valorMensal, taxa, meses)
-    fimse
-    
-    para i de 0 ate meses faca
-        escreval("Mês: ", i, " Juros: ", valoresJuros[i]:2, " Total Acumulado: ", totalAcumulado[i]:2)
-    fimpara
+      escreval("Digite 'S' para Juros Simples ou 'C' para Juros Compostos: ")
+      leia(tipoJuros)
+      escreval("Digite o valor inicial: ")
+      leia(valorInicial)
+      
+      se tipoJuros = "C" entao
+         escreval("Digite o valor mensal: ")
+         leia(valorMensal)
+      senao
+           valorMensal <- 0
+      fimse
+      
+      se (valorInicial < 1000) entao
+         escreval("VALOR MÍNIMO PARA PARCELAMENTO DEVE SER R$1000,00.")
+      senao
+           escreval("Digite a taxa de juros (em %): ")
+           leia(taxa)
+           
+           se (taxa <= 0) ou (taxa > 10) entao
+              escreval("VALOR DOS JUROS INVÁLIDO.")
+           senao
+               escreval("Digite o período (em meses, entre 6 e 12): ")
+               leia(meses)
+               
+                     se (meses < 6) ou (meses > 12) entao
+                        escreval("NÚMERO DE PARCELAS INVÁLIDO.")
+                     senao
+                          se tipoJuros = "S" entao
+                              jurosSimples(valorInicial, taxa, meses)
+                           senao
+                                jurosCompostos(valorInicial, valorMensal, taxa,meses)
+                           fimse
+      
+                          para i de 0 ate meses faca
+                               escreval("Mês: ", i, " Juros: ", juros[i]:2, " Total Acumulado: ", totalAcumulado[i]:2)
+                          fimpara
+                     fimse
+               fimse
+      fimse
 Fimalgoritmo
