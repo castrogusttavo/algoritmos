@@ -1,79 +1,79 @@
-Algoritmo "menu_opcoes"
+// Algoritmo "menu_opcoes"
 // Disciplina   : [Linguagem e Lógica de Programação]
-// Professor   : Antonio Carlos Nicolodi
-// Descrição   : Executa operações matemáticas e manipulação de vetor baseadas em um menu interativo
-// Autor(a)    : Nome do(a) aluno(a)
-// Data atual  : 16/11/2024
+// Professor    : Antonio Carlos Nicolodi
+// Descrição    : Executa operações matemáticas e manipulação de vetor baseadas em um menu interativo
+// Autor(a)     : Nome do(a) aluno(a)
+// Data atual   : 16/11/2024
 Var
-    numero1, numero2, i, idade: inteiro
-    resultado: real
-    numeros: vetor[1..100] de real
-    opcao: caractere
-    resultadoPotencia, resultadoSomaInclusiva, resultadoProdutoExclusivo: real
+    number1, number2, i, age: inteiro
+    result: real
+    numbers: vetor[1..100] de real
+    option: caractere
+    powerResult, inclusiveSumResult, exclusiveProductResult: real
 
-funcao Potencia(base: inteiro; expoente: inteiro): real
+funcao Power(base: inteiro; exponent: inteiro): real
 var
     i: inteiro
-    resultado: real
+    result: real
 inicio
-    resultado <- 1
-    para i de 1 ate expoente faca
-        resultado <- resultado * base
+    result <- 1
+    para i de 1 ate exponent faca
+        result <- result * base
     fimpara
-    retorne resultado
+    retorne result
 fimfuncao
 
-funcao SomaInclusiva(numero1: inteiro; numero2: inteiro): inteiro
+funcao InclusiveSum(number1: inteiro; number2: inteiro): inteiro
 var
-    soma, i, temp: inteiro
+    sum, i, temp: inteiro
 inicio
-    se numero1 > numero2 entao
-        temp <- numero1
-        numero1 <- numero2
-        numero2 <- temp
+    se number1 > number2 entao
+        temp <- number1
+        number1 <- number2
+        number2 <- temp
     fimse
-    soma <- 0
-    para i de numero1 ate numero2 faca
-        soma <- soma + i
+    sum <- 0
+    para i de number1 ate number2 faca
+        sum <- sum + i
     fimpara
-    retorne soma
+    retorne sum
 fimfuncao
 
-funcao ProdutoExclusivo(numero1: inteiro; numero2: inteiro): inteiro
+funcao ExclusiveProduct(number1: inteiro; number2: inteiro): inteiro
 var
-    produto, i, temp: inteiro
+    product, i, temp: inteiro
 inicio
-    se numero1 > numero2 entao
-        temp <- numero1
-        numero1 <- numero2
-        numero2 <- temp
+    se number1 > number2 entao
+        temp <- number1
+        number1 <- number2
+        number2 <- temp
     fimse
-    produto <- 1
-    para i de numero1 + 1 ate numero2 - 1 faca
-        produto <- produto * i
+    product <- 1
+    para i de number1 + 1 ate number2 - 1 faca
+        product <- product * i
     fimpara
-    retorne produto
+    retorne product
 fimfuncao
 
-Procedimento carregarVetor(idade, primeiro, salto: inteiro)
+Procedimento loadArray(age, first, step: inteiro)
 Var
     i: inteiro
 Inicio
-    para i de 1 ate idade faca
-        numeros[i] <- primeiro + (i - 1) * salto
+    para i de 1 ate age faca
+        numbers[i] <- first + (i - 1) * step
     fimpara
     escreval("Vetor carregado com sucesso.")
-    para i de 1 ate idade faca
-        escreva(numeros[i], " ")
+    para i de 1 ate age faca
+        escreva(numbers[i], " ")
     fimpara
     escreval("")
 FimProcedimento
 
 Inicio
     escreval("Digite o primeiro número inteiro:")
-    leia(numero1)
+    leia(number1)
     escreval("Digite o segundo número inteiro:")
-    leia(numero2)
+    leia(number2)
 
     repita
         escreval("Menu de opções:")
@@ -84,25 +84,25 @@ Inicio
         escreval("E) Sair")
 
         escreval("Escolha uma opção (A, B, C, D, E):")
-        leia(opcao)
+        leia(option)
 
-        escolha opcao
+        escolha option
             caso "A"
-                resultadoPotencia <- Potencia(numero1, numero2)
-                escreval("Resultado da potência: ", resultadoPotencia)
+                powerResult <- Power(number1, number2)
+                escreval("Resultado da potência: ", powerResult)
             caso "B"
-                resultadoSomaInclusiva <- SomaInclusiva(numero1, numero2)
-                escreval("Soma inclusiva: ", resultadoSomaInclusiva)
+                inclusiveSumResult <- InclusiveSum(number1, number2)
+                escreval("Soma inclusiva: ", inclusiveSumResult)
             caso "C"
-                resultadoProdutoExclusivo <- ProdutoExclusivo(numero1, numero2)
-                escreval("Produto exclusivo: ", resultadoProdutoExclusivo)
+                exclusiveProductResult <- ExclusiveProduct(number1, number2)
+                escreval("Produto exclusivo: ", exclusiveProductResult)
             caso "D"
-                idade <- 19 // Substitua pela sua idade, se necessário
-                carregarVetor(idade, numero1, numero2)
+                age <- 19 // Substitua pela sua idade, se necessário
+                loadArray(age, number1, number2)
             caso "E"
                 escreval("Encerrando o programa...")
             outrocaso
                 escreval("Opção inválida! Tente novamente.")
         fimescolha
-    ate opcao = "E"
+    ate option = "E"
 Fimalgoritmo
